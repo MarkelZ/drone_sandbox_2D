@@ -7,8 +7,10 @@ class RigidLink:
         self.p1 = p1
         self.p2 = p2
         self.length = length if length != None else self.get_currentlength()
+
         self.breakcoef = breakcoef
         self.maxlength = self.length * breakcoef
+        self.isbroken = False
 
     def update(self, tdelta):
         # Distance between p1 and p2
@@ -16,9 +18,7 @@ class RigidLink:
 
         # If the distance is too great, break link
         if dist > self.maxlength:
-            # self.breaklink()
-            # TODO: this is for debugging
-            pass
+            self.breaklink()
         # Else, constrain link
         elif dist > 0:
             # Normalized direction
@@ -52,6 +52,7 @@ class RigidLink:
 
     def breaklink(self):
         self.engine.remove_rigidlink(self)
+        self.isbroken = True
 
     def get_currentlength2(self):
         dx = self.p1.x - self.p2.x
