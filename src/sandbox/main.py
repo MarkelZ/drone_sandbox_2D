@@ -1,7 +1,7 @@
 from game import Game
 
-# Initialize game with screen resolution 720x480
-game = Game(720, 480)
+# Initialize game with screen resolution 720p
+game = Game(1280, 720)
 
 # Run the game
 game.run()
