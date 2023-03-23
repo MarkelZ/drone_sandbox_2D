@@ -5,14 +5,14 @@ from gamescene import GameScene
 class Game:
     def __init__(self, width, height):
         # Fields
-        self.WIDTH = width
-        self.HEIGHT = height
+        self.width = width
+        self.height = height
         self.FPS = 60
         self.mspt = int(1000. / self.FPS)
 
         # Initialize and setup pygame
         pygame.init()
-        self.win = pygame.display.set_mode((self.WIDTH, self.HEIGHT))
+        self.win = pygame.display.set_mode((self.width, self.height))
         pygame.display.set_caption('Neon ninja')
 
         # Gameplay scene
