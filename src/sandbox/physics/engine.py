@@ -7,7 +7,7 @@ class Engine:
         self.ground = height
 
         # Physics variables
-        self.gravity = -1
+        self.gravity = 1
 
         # Physics objects
         self.points = []
@@ -30,11 +30,15 @@ class Engine:
         self.points += self.points_to_add
         self.points = [
             p for p in self.points if p not in self.points_to_remove]
+        self.points_to_add = []
+        self.points_to_remove = []
 
         # Add and remove links
-        self.points += self.points_to_add
-        self.points = [
-            p for p in self.points if p not in self.points_to_remove]
+        self.links += self.links_to_add
+        self.links = [
+            l for l in self.links if l not in self.links_to_remove]
+        self.links_to_add = []
+        self.links_to_remove = []
 
     def change_size(self, width, height, updateground=False):
         self.width = width

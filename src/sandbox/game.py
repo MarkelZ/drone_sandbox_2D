@@ -8,12 +8,13 @@ class Game:
         self.width = width
         self.height = height
         self.FPS = 60
-        self.mspt = int(1000. / self.FPS)
+        self.spt = 1. / self.FPS
+        self.mspt = int(1000. * self.spt)
 
         # Initialize and setup pygame
         pygame.init()
         self.win = pygame.display.set_mode((self.width, self.height))
-        pygame.display.set_caption('Neon ninja')
+        pygame.display.set_caption('Drone Sandbox 2D')
 
         # Gameplay scene
         self.scene = GameScene(self)

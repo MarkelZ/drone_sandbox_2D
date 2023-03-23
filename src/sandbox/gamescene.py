@@ -15,7 +15,8 @@ class GameScene:
         self.generate_test()
 
     def generate_test(self):
-        p = PointMass(self.engine, 64, 64)
+        p = PointMass(self.engine, 64, 64, 10, 0)
+        p.grradius = 16
         self.engine.add_pointmass(p)
 
     def update(self, tdelta):
@@ -24,4 +25,4 @@ class GameScene:
     def draw(self, sfc):
         sfc.fill(self.backcol)
         for p in self.engine.points:
-            pygame.draw.circle(sfc, self.forecol, (p.x, p.y), 16)
+            pygame.draw.circle(sfc, self.forecol, (p.x, p.y), p.grradius)
