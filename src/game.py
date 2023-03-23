@@ -44,4 +44,4 @@ class Game:
     # Draw call
     def draw(self):
         self.scene.draw(self.win)
-        pygame.display.flip()
+        pygame.display.update([self.win.get_rect()])
