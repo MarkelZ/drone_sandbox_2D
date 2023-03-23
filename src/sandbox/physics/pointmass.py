@@ -11,9 +11,9 @@ class PointMass:
         self.vx = vx        # X speed
         self.vy = vy        # Y speed
         self.grradius = 0   # Radius for ground collision
+        self.mass = 1       # Mass
 
         # Physics coefficients
-        self.mass = 0       # Mass
         self.gmul = 1       # Gravity multiplier
         self.drfric = 0.99  # Air friction (drag)
         self.grfric = 0.9   # Ground friction
@@ -26,8 +26,6 @@ class PointMass:
         # Apply drag
         self.vx *= self.drfric
         self.vy *= self.drfric
-
-        print(self.vy)
 
         # Move with velocity
         self.x += self.vx

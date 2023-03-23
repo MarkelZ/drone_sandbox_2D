@@ -15,14 +15,31 @@ class GameScene:
         self.generate_test()
 
     def generate_test(self):
-        p = PointMass(self.engine, 64, 64, 10, 0)
-        p.grradius = 16
-        self.engine.add_pointmass(p)
+        # Point1
+        p1 = PointMass(self.engine, 100, 100, 20, 0)
+        p1.grradius = 16
+        p1.mass = 3
+        self.engine.add_pointmass(p1)
+
+        # Point2
+        p2 = PointMass(self.engine, 100, 200, 0, 0)
+        p2.grradius = 16
+        p2.mass = 2
+        self.engine.add_pointmass(p2)
+
+        # Rigid link
+        l = RigidLink(self.engine, p1, p2)
+        self.engine.add_rigidlink(l)
 
     def update(self, tdelta):
         self.engine.update(tdelta)
 
     def draw(self, sfc):
         sfc.fill(self.backcol)
+
         for p in self.engine.points:
             pygame.draw.circle(sfc, self.forecol, (p.x, p.y), p.grradius)
+
+        for l in self.engine.links:
+            pygame.draw.line(sfc, self.forecol,
+                             (l.p1.x, l.p1.y), (l.p2.x, l.p2.y))
