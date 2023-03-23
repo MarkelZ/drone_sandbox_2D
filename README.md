@@ -5,11 +5,19 @@ This is a sandbox for making flying machines in 2D.
 
 ## Dependencies
 - Python 3.
+- Pygame 2.3.0+
 
-## Running
+## Running the sandbox
 Run the following command:
-
 ```sh
+cd src/sandbox/
+python3 main.py
+```
+
+## Running the editor
+Run the following command:
+```sh
+cd src/editor/
 python3 main.py
 ```
 
