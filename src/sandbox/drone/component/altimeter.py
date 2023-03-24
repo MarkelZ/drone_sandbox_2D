@@ -37,7 +37,6 @@ class AltiMeter(Component, MeasurablePositionComponent, TriggerableComponent):
 
         sigmoid = 2.0 / (1.0 +
                          np.exp(-2 * self.altitude / self.engine.ground)) - 1
-        print(sigmoid)
         offset = max(sigmoid, 0.0) * self.height
         pygame.draw.rect(sfc, col_fore, pygame.Rect(
             x1, y1, self.width, self.height))
