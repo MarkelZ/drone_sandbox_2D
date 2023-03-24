@@ -1,10 +1,10 @@
 import pygame
-from drone.component.component import Component, MeasurablePositionComponent, MeasurableAngleComponent, TriggerableComponent, PointMassComponent
+from drone.component.component import Component, PushableComponent, MeasurablePositionComponent, MeasurableAngleComponent, TriggerableComponent, PointMassComponent
 from math import atan2
 from physics.rigidlink import RigidLink
 
 
-class LinkComponent(Component, MeasurablePositionComponent, MeasurableAngleComponent, TriggerableComponent):
+class LinkComponent(Component, PushableComponent, MeasurablePositionComponent, MeasurableAngleComponent, TriggerableComponent):
     def __init__(self, engine, v1, v2, breakcoef, mass, color):
         # Check that the children have the right type
         assert isinstance(v1, PointMassComponent)
@@ -37,6 +37,10 @@ class LinkComponent(Component, MeasurablePositionComponent, MeasurableAngleCompo
 
     def is_triggered(self):
         return self.l.isbroken
+
+    def push(self, pushx, pushy):
+        self.l.p1.push(pushx, pushy)
+        self.l.p2.push(pushx, pushy)
 
     def get_draw_priority():
         return 0

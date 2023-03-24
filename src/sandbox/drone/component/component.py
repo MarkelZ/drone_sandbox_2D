@@ -41,3 +41,9 @@ class TriggerableComponent(metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def is_triggered(self):
         pass
+
+
+class PushableComponent(metaclass=abc.ABCMeta):
+    @abc.abstractmethod
+    def push(self, pushx, pushy):
+        pass

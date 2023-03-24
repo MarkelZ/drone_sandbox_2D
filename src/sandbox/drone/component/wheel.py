@@ -10,6 +10,7 @@ class Wheel(Component, MeasurablePositionComponent, PointMassComponent, Triggera
         assert isinstance(child2, TriggerableComponent)
         self.c1 = child1
         self.c2 = child2
+        self.triggered = False
 
         # Set engine
         self.engine = engine
@@ -31,11 +32,14 @@ class Wheel(Component, MeasurablePositionComponent, PointMassComponent, Triggera
         self.tirewidth = 2
 
     def update(self, tdelta):
+        self.triggered = False
         if self.is_touching_ground():
             if self.c1.is_triggered():
-                self.p.vx += self.power
+                self.triggered = True
+                self.p.push(self.power, 0)
             if self.c2.is_triggered():
-                self.p.vx -= self.power
+                self.triggered = True
+                self.p.push(-self.power, 0)
 
     def draw(self, sfc):
         pygame.draw.circle(
@@ -50,7 +54,7 @@ class Wheel(Component, MeasurablePositionComponent, PointMassComponent, Triggera
         return self.p
 
     def is_triggered(self):
-        return self.c1.is_triggered() or self.c2.is_triggered()
+        return self.triggered
 
     def get_draw_priority():
         return 0

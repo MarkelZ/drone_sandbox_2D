@@ -1,4 +1,5 @@
 import pygame
+import math
 from drone.drone import Drone
 from drone.component.vertex import Vertex
 from drone.component.wheel import Wheel
@@ -7,6 +8,7 @@ from drone.component.anglemeter import AngleMeter
 from drone.component.altimeter import AltiMeter
 from drone.component.dummy import get_dummy
 from drone.component.input import InputComponent
+from drone.component.booster import Booster
 
 
 def create_test_drone(engine):
@@ -16,6 +18,7 @@ def create_test_drone(engine):
     # Input
     k_right = InputComponent(pygame.K_RIGHT)
     k_left = InputComponent(pygame.K_LEFT)
+    k_space = InputComponent(pygame.K_SPACE)
 
     # Components
     dummy = get_dummy()
@@ -27,6 +30,7 @@ def create_test_drone(engine):
     l3 = LinkCarbon(engine, v3, v1)
     a = AngleMeter(l2, 0.5)
     z = AltiMeter(engine, v1, 400)
+    b = Booster(l2, k_space, 2, math.pi / 2)
 
     # Give spin to drone
     v1.p.vx = 30
@@ -34,6 +38,7 @@ def create_test_drone(engine):
     v3.p.vy = 30
 
     # Add components to drone
-    testdrone.components = [v1, v2, v3, l1, l2, l3, a, z, k_right, k_left]
+    testdrone.components = [v1, v2, v3, l1,
+                            l2, l3, a, z, b, k_right, k_left, k_space]
 
     return testdrone

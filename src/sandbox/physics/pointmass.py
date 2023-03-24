@@ -40,3 +40,7 @@ class PointMass:
             self.y = self.engine.ground - self.grradius
             self.vy = self.vy * self.bounce
             self.vx *= self.grfric
+
+    def push(self, dx, dy):
+        self.vx += dx
+        self.vy += dy
