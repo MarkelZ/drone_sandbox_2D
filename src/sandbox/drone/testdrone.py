@@ -2,6 +2,7 @@ from drone.drone import Drone
 from drone.component.vertex import Vertex
 from drone.component.linkcomponent import LinkCarbon
 from drone.component.anglemeter import AngleMeter
+from drone.component.altimeter import AltiMeter
 
 
 def create_test_drone(engine):
@@ -16,5 +17,6 @@ def create_test_drone(engine):
     l2 = LinkCarbon(engine, v2, v3)
     l3 = LinkCarbon(engine, v3, v1)
     a = AngleMeter(l2, 0.5)
-    testdrone.components = [v1, v2, v3, l1, l2, l3, a]
+    z = AltiMeter(engine, v1, 400)
+    testdrone.components = [v1, v2, v3, l1, l2, l3, a, z]
     return testdrone

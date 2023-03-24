@@ -1,7 +1,7 @@
 from component import MeasurablePositionComponent, TriggerableComponent
 
 
-class AltiMeter(MeasurablePositionComponent, TriggerableComponent):
+class NotGate(MeasurablePositionComponent, TriggerableComponent):
     def __init__(self, child):
         assert isinstance(child, MeasurablePositionComponent)
         assert isinstance(child, TriggerableComponent)
