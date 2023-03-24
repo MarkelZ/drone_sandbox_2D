@@ -5,11 +5,12 @@ from math import pi, sin, cos
 
 
 class AngleMeter(Component, MeasurablePositionComponent, MeasurableAngleComponent, TriggerableComponent):
-    def __init__(self, child, threshold):
+    def __init__(self, child, threshold1, threshold2):
         assert isinstance(child, MeasurableAngleComponent)
         assert isinstance(child, MeasurablePositionComponent)
         self.c = child
-        self.threshold = threshold  # In radians!
+        self.threshold1 = threshold1  # In radians!
+        self.threshold2 = threshold2  # In radians!
         self.triggered = False
         self.angle = 0
 
@@ -25,7 +26,7 @@ class AngleMeter(Component, MeasurablePositionComponent, MeasurableAngleComponen
 
     def update(self, tdelta):
         self.angle = self.c.get_angle()
-        self.triggered = self.angle > self.threshold
+        self.triggered = self.angle > self.threshold1 and self.angle < self.threshold2
 
     def draw(self, sfc):
         center_x, center_y = self.c.get_position()

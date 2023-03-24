@@ -2,7 +2,7 @@ import pygame
 from physics.engine import Engine
 from physics.pointmass import PointMass
 from physics.rigidlink import RigidLink
-from drone.testdrone import create_test_drone
+from drone.testdrone2 import create_test_drone
 
 
 class GameScene:
