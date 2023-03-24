@@ -4,8 +4,8 @@ from math import atan2
 from physics.rigidlink import RigidLink
 
 
-class LinkCarbon(MeasurablePositionComponent, MeasurableAngleComponent, TriggerableComponent):
-    def __init__(self, engine, v1, v2):
+class LinkComponent(MeasurablePositionComponent, MeasurableAngleComponent, TriggerableComponent):
+    def __init__(self, engine, v1, v2, breakcoef, mass, color):
         # Check that the children have the right type
         assert isinstance(v1, PointMassComponent)
         assert isinstance(v2, PointMassComponent)
@@ -13,12 +13,12 @@ class LinkCarbon(MeasurablePositionComponent, MeasurableAngleComponent, Triggera
         p2 = v2.get_pointmass()
 
         # Create rigid link and distribute mass of link to children
-        self.l = RigidLink(engine, p1, p2, None, breakcoef=1.75)
-        p1.mass += 10
-        p2.mass += 10
+        self.l = RigidLink(engine, p1, p2, None, breakcoef=breakcoef)
+        p1.mass += mass
+        p2.mass += mass
 
         # Foreground color
-        self.color = (255, 216, 128)
+        self.color = color
 
     def update(self, tdelta):
         if self.l.isbroken:
@@ -29,12 +29,6 @@ class LinkCarbon(MeasurablePositionComponent, MeasurableAngleComponent, Triggera
         pygame.draw.line(sfc, self.color, (self.l.p1.x,
                          self.l.p1.y), (self.l.p2.x, self.l.p2.y), 4)
 
-    def get_draw_priority():
-        return 0
-
-    def get_update_priority():
-        return 0
-
     def get_position(self):
         return ((self.l.p1.x + self.l.p2.x) / 2, (self.l.p1.y + self.l.p2.y) / 2)
 
@@ -43,3 +37,13 @@ class LinkCarbon(MeasurablePositionComponent, MeasurableAngleComponent, Triggera
 
     def is_triggered(self):
         return self.l.isbroken
+
+
+class LinkCarbon(LinkComponent):
+    def __init__(self, engine, v1, v2):
+        super().__init__(engine, v1, v2, 1.75, 10, (255, 216, 128))
+
+
+class LinkAluminum(LinkComponent):
+    def __init__(self, engine, v1, v2):
+        super().__init__(engine, v1, v2, 2.5, 20, (128, 216, 255))

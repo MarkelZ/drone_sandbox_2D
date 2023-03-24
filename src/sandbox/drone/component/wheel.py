@@ -3,19 +3,22 @@ from physics.pointmass import PointMass
 
 
 class Vertex(MeasurablePositionComponent, PointMassComponent, TriggerableComponent):
-    def __init__(self, x, y, power, child1, child2):
+    def __init__(self, engine, x, y, power, child1, child2):
+        # Check that the children have the right type
         assert isinstance(child1, TriggerableComponent)
         assert isinstance(child2, TriggerableComponent)
         self.c1 = child1
         self.c2 = child1
 
+        # Create a pointmass with a wheel's properties
+        self.p = PointMass(engine, x, y)
         self.p.bounce = 0.8
-        self.p = PointMass(x, y)
         self.p.grradius = 16
         self.p.bounce = 0.8
         self.p.grfric = 0.995
         self.p.mass += 10
 
+        # Power of the wheel
         self.power = power
 
     def update(self, tdelta):

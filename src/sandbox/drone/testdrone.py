@@ -1,6 +1,6 @@
 from drone.drone import Drone
 from drone.component.vertex import Vertex
-from drone.component.linkcarbon import LinkCarbon
+from drone.component.linkcomponent import LinkCarbon
 
 
 def create_test_drone(engine):
