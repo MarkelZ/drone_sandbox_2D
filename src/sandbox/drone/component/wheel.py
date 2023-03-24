@@ -9,18 +9,18 @@ class Wheel(Component, MeasurablePositionComponent, PointMassComponent, Triggera
         assert isinstance(child1, TriggerableComponent)
         assert isinstance(child2, TriggerableComponent)
         self.c1 = child1
-        self.c2 = child1
+        self.c2 = child2
 
         # Create a pointmass with a wheel's properties
         self.p = PointMass(engine, x, y)
         self.p.grradius = 16
         self.p.bounce = 0.99
-        self.p.grfric = 0.995
-        self.p.drfric = 0.995
+        self.p.drfric = 0.99
+        self.p.grfric = 0.99
         self.p.mass += 10
 
         # Power of the wheel
-        self.power = power
+        self.power = power / 100
 
         # Render settings
         self.color1 = (216, 216, 255)
