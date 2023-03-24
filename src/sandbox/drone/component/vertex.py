@@ -11,9 +11,6 @@ class Vertex(Component, MeasurablePositionComponent, PointMassComponent):
 
         self.color = (0, 255, 64)
 
-    def add_to_engine(self, engine):
-        engine.add_pointmass(self.p)
-
     def update(self, tdelta):
         pass
 

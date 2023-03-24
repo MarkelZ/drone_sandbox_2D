@@ -6,18 +6,19 @@ from physics.rigidlink import RigidLink
 
 class LinkCarbon(MeasurablePositionComponent, MeasurableAngleComponent, TriggerableComponent):
     def __init__(self, engine, v1, v2):
+        # Check that the children have the right type
         assert isinstance(v1, PointMassComponent)
         assert isinstance(v2, PointMassComponent)
         p1 = v1.get_pointmass()
         p2 = v2.get_pointmass()
+
+        # Create rigid link and distribute mass of link to children
         self.l = RigidLink(engine, p1, p2, None, breakcoef=1.75)
         p1.mass += 10
         p2.mass += 10
 
+        # Foreground color
         self.color = (255, 216, 128)
-
-    def add_to_engine(self, engine):
-        engine.add_rigidlink(self.l)
 
     def update(self, tdelta):
         if self.l.isbroken:

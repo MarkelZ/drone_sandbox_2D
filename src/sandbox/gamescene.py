@@ -25,27 +25,19 @@ class GameScene:
         if self.drone != None:
             self.drone.draw(sfc)
 
-    def add_drone(self, drone):
-        for comp in drone.components:
-            comp.add_to_engine(self.engine)
-        self.drone = drone
-
     def generate_test1(self):
         # Point1
         p1 = PointMass(self.engine, 100, 100, 20, 0)
         p1.grradius = 16
         p1.mass = 3
-        self.engine.add_pointmass(p1)
 
         # Point2
         p2 = PointMass(self.engine, 100, 200, 0, 0)
         p2.grradius = 16
         p2.mass = 2
-        self.engine.add_pointmass(p2)
 
         # Rigid link
         l = RigidLink(self.engine, p1, p2)
-        self.engine.add_rigidlink(l)
 
     def generate_test2(self):
-        self.add_drone(create_test_drone(self.engine))
+        self.drone = create_test_drone(self.engine)

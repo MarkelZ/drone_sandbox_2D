@@ -19,6 +19,9 @@ class PointMass:
         self.grfric = 0.9   # Ground friction
         self.bounce = -0.75  # Bounciness
 
+        # Add to engine
+        self.engine.add_pointmass(self)
+
     def update(self, tdelta):
         # Apply gravity
         self.vy += self.engine.gravity * self.gmul

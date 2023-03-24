@@ -12,6 +12,9 @@ class RigidLink:
         self.maxlength = self.length * breakcoef
         self.isbroken = False
 
+        # Add to engine
+        self.engine.add_rigidlink(self)
+
     def update(self, tdelta):
         # Distance between p1 and p2
         dist = self.get_currentlength()

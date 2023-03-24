@@ -3,10 +3,6 @@ import abc
 
 class Component(metaclass=abc.ABCMeta):
     @abc.abstractmethod
-    def add_to_engine(self, engine):
-        pass
-
-    @abc.abstractmethod
     def update(self, tdelta):
         pass
 
