@@ -33,7 +33,7 @@ class LinkComponent(MeasurablePositionComponent, MeasurableAngleComponent, Trigg
         return ((self.l.p1.x + self.l.p2.x) / 2, (self.l.p1.y + self.l.p2.y) / 2)
 
     def get_angle(self):
-        return atan2(self.l.p2.x - self.l.p1.x, self.l.p2.y - self.l.p1.y)
+        return atan2(self.l.p2.y - self.l.p1.y, self.l.p2.x - self.l.p1.x)
 
     def is_triggered(self):
         return self.l.isbroken
