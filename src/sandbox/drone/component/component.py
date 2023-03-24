@@ -1,14 +1,25 @@
 import abc
 
 
-class Component():
+class Component(metaclass=abc.ABCMeta):
+    @abc.abstractmethod
+    def add_to_engine(self, engine):
+        pass
+
+    @abc.abstractmethod
     def update(self, tdelta):
         pass
 
+    @abc.abstractmethod
     def draw(self, sfc):
         pass
 
-    def get_layer():
+    @abc.abstractmethod
+    def get_draw_priority():
+        return 0
+
+    @abc.abstractmethod
+    def get_update_priority():
         return 0
 
 

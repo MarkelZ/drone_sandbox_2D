@@ -2,19 +2,35 @@ import pygame
 from physics.engine import Engine
 from physics.pointmass import PointMass
 from physics.rigidlink import RigidLink
+from drone.testdrone import create_test_drone
 
 
 class GameScene:
     def __init__(self, game):
         self.game = game
         self.engine = Engine(game.width, game.height)
+        self.drone = None
         self.backcol = (0, 0, 64)
-        self.forecol = (0, 255, 128)
 
         # This is for testing
-        self.generate_test()
+        self.generate_test2()
 
-    def generate_test(self):
+    def update(self, tdelta):
+        self.engine.update(tdelta)
+        if self.drone != None:
+            self.drone.update(tdelta)
+
+    def draw(self, sfc):
+        sfc.fill(self.backcol)
+        if self.drone != None:
+            self.drone.draw(sfc)
+
+    def add_drone(self, drone):
+        for comp in drone.components:
+            comp.add_to_engine(self.engine)
+        self.drone = drone
+
+    def generate_test1(self):
         # Point1
         p1 = PointMass(self.engine, 100, 100, 20, 0)
         p1.grradius = 16
@@ -31,15 +47,5 @@ class GameScene:
         l = RigidLink(self.engine, p1, p2)
         self.engine.add_rigidlink(l)
 
-    def update(self, tdelta):
-        self.engine.update(tdelta)
-
-    def draw(self, sfc):
-        sfc.fill(self.backcol)
-
-        for p in self.engine.points:
-            pygame.draw.circle(sfc, self.forecol, (p.x, p.y), p.grradius)
-
-        for l in self.engine.links:
-            pygame.draw.line(sfc, self.forecol,
-                             (l.p1.x, l.p1.y), (l.p2.x, l.p2.y))
+    def generate_test2(self):
+        self.add_drone(create_test_drone(self.engine))

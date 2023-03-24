@@ -1,7 +1,8 @@
 
 
 class Drone:
-    def __init__(self, path=None):
+    def __init__(self, engine, path=None):
+        self.engine = engine
         self.components = self.load_components(path)
         # TODO: sort components by component type for updating and drawing
 

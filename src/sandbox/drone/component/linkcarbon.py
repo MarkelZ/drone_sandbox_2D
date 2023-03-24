@@ -1,22 +1,38 @@
-from component import MeasurablePositionComponent, MeasurableAngleComponent, TriggerableComponent, PointMassComponent
+import pygame
+from drone.component.component import MeasurablePositionComponent, MeasurableAngleComponent, TriggerableComponent, PointMassComponent
 from math import atan2
 from physics.rigidlink import RigidLink
 
 
 class LinkCarbon(MeasurablePositionComponent, MeasurableAngleComponent, TriggerableComponent):
-    def __init__(self, v1, v2):
+    def __init__(self, engine, v1, v2):
         assert isinstance(v1, PointMassComponent)
         assert isinstance(v2, PointMassComponent)
         p1 = v1.get_pointmass()
         p2 = v2.get_pointmass()
-        self.l = RigidLink(p1, p2, None, breakcoef=1.75)
+        self.l = RigidLink(engine, p1, p2, None, breakcoef=1.75)
         p1.mass += 10
         p2.mass += 10
+
+        self.color = (255, 216, 128)
+
+    def add_to_engine(self, engine):
+        engine.add_rigidlink(self.l)
 
     def update(self, tdelta):
         if self.l.isbroken:
             # TODO: break and create particles
             pass
+
+    def draw(self, sfc):
+        pygame.draw.line(sfc, self.color, (self.l.p1.x,
+                         self.l.p1.y), (self.l.p2.x, self.l.p2.y), 4)
+
+    def get_draw_priority():
+        return 0
+
+    def get_update_priority():
+        return 0
 
     def get_position(self):
         return ((self.l.p1.x + self.l.p2.x) / 2, (self.l.p1.y + self.l.p2.y) / 2)
