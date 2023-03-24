@@ -11,6 +11,9 @@ class Wheel(Component, MeasurablePositionComponent, PointMassComponent, Triggera
         self.c1 = child1
         self.c2 = child2
 
+        # Set engine
+        self.engine = engine
+
         # Create a pointmass with a wheel's properties
         self.p = PointMass(engine, x, y)
         self.p.grradius = 16
@@ -28,10 +31,11 @@ class Wheel(Component, MeasurablePositionComponent, PointMassComponent, Triggera
         self.tirewidth = 2
 
     def update(self, tdelta):
-        if self.c1.is_triggered():
-            self.p.vx += self.power
-        if self.c2.is_triggered():
-            self.p.vx -= self.power
+        if self.is_touching_ground():
+            if self.c1.is_triggered():
+                self.p.vx += self.power
+            if self.c2.is_triggered():
+                self.p.vx -= self.power
 
     def draw(self, sfc):
         pygame.draw.circle(
@@ -53,3 +57,6 @@ class Wheel(Component, MeasurablePositionComponent, PointMassComponent, Triggera
 
     def get_update_priority():
         return 0
+
+    def is_touching_ground(self):
+        return self.p.y + self.p.grradius + 1 >= self.engine.ground
