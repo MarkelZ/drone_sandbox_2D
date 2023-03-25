@@ -1,8 +1,10 @@
+import random
 import pygame
 from physics.engine import Engine
 from physics.pointmass import PointMass
 from physics.rigidlink import RigidLink
 from drone.testdrone2 import create_test_drone
+from drone.particle.particle import FireParticle
 
 
 class GameScene:
@@ -12,6 +14,10 @@ class GameScene:
         self.drone = None
         self.backcol = (0, 0, 64)
 
+        self.particles = []
+        self.particles_to_add = []
+        self.particles_to_remove = []
+
         # This is for testing
         self.generate_test2()
 
@@ -20,10 +26,34 @@ class GameScene:
         if self.drone != None:
             self.drone.update(tdelta)
 
+        # TEST
+        if pygame.key.get_pressed()[pygame.K_p]:
+            self.add_particle(FireParticle(
+                self, 500, 200, random.random() * 6.28))
+
+        for p in self.particles:
+            p.update(tdelta)
+
+        self.particles += self.particles_to_add
+        self.particles_to_add = []
+
+        self.particles = [
+            p for p in self.particles if p not in self.particles_to_remove]
+        self.particles_to_remove = []
+
     def draw(self, sfc):
         sfc.fill(self.backcol)
         if self.drone != None:
             self.drone.draw(sfc)
+
+        for p in self.particles:
+            p.draw(sfc)
+
+    def add_particle(self, p):
+        self.particles_to_add.append(p)
+
+    def remove_particle(self, p):
+        self.particles_to_remove.append(p)
 
     def generate_test1(self):
         # Point1

@@ -5,8 +5,6 @@ from drone.component.vertex import Vertex
 from drone.component.wheel import Wheel
 from drone.component.linkcomponent import LinkCarbon
 from drone.component.anglemeter import AngleMeter
-from drone.component.altimeter import AltiMeter
-from drone.component.dummy import get_dummy
 from drone.component.input import InputComponent
 from drone.component.booster import Booster
 
@@ -67,11 +65,15 @@ def create_test_drone(engine):
     a2 = AngleMeter(l14, -1.5, -0.1)
 
     b1 = Booster(l14, k_space, 2, math.pi / 2)
-    b2 = Booster(l4, a2, 2, -math.pi / 2)
-    b3 = Booster(l10, a1, 2, math.pi / 2)
 
     b4 = Booster(l3, k_space, 2, -math.pi / 2)
     b5 = Booster(l9, k_space, 2, math.pi / 2)
+
+    b2 = Booster(l4, a2, 2, -math.pi / 2)
+    b3 = Booster(l10, a1, 2, math.pi / 2)
+
+    b6 = Booster(l2, k_right, 2, math.pi / 2)
+    b7 = Booster(l8, k_left, 2, -math.pi / 2)
 
     # Add components to drone
     testdrone.components = [v1, v2, v3, v4, v5, v6, v7, v8,
@@ -79,7 +81,7 @@ def create_test_drone(engine):
                             l1, l2, l3, l4, l5, l6, l7, l8,
                             l9, l10, l11, l12, l13, l14, l15,
                             l16, l17, l18, l19, l20, l21, l22, l23, l24,
-                            a1, a2, b1, b2, b3, b4, b5,
+                            a1, a2, b1, b2, b3, b4, b5, b6, b7,
                             k_right, k_left, k_space]
 
     return testdrone
