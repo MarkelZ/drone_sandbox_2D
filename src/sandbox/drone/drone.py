@@ -1,8 +1,8 @@
 
 
 class Drone:
-    def __init__(self, engine, path=None):
-        self.engine = engine
+    def __init__(self, gamestate, path=None):
+        self.gs = gamestate
         self.components = self.load_components(path)
         # TODO: sort components by component type for updating and drawing
 

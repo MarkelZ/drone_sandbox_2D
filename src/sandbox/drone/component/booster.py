@@ -1,10 +1,12 @@
+import random
 import pygame
 from drone.component.component import Component, MeasurablePositionComponent, MeasurableAngleComponent, TriggerableComponent, PushableComponent
+from drone.particle.particle import FireParticle
 from math import sin, cos
 
 
 class Booster(Component, MeasurablePositionComponent, MeasurableAngleComponent, TriggerableComponent):
-    def __init__(self, v, t, power, angle):
+    def __init__(self, gamestate, v, t, power, angle):
         # Check that the children have the right type
         assert isinstance(v, PushableComponent)
         assert isinstance(v, MeasurablePositionComponent)
@@ -12,6 +14,7 @@ class Booster(Component, MeasurablePositionComponent, MeasurableAngleComponent, 
         assert isinstance(t, TriggerableComponent)
         self.v = v
         self.t = t
+        self.gs = gamestate
 
         # Booster parameters
         self.power = power
@@ -24,6 +27,8 @@ class Booster(Component, MeasurablePositionComponent, MeasurableAngleComponent, 
         self.color = (200, 200, 255)
         self.width = 30
         self.height = 20
+        self.particle_dtheta = 0.5
+        self.particle_amount = 1
 
     def update(self, tdelta):
         self.angle = self.v.get_angle() + self.relangle
@@ -59,6 +64,14 @@ class Booster(Component, MeasurablePositionComponent, MeasurableAngleComponent, 
         # Draw polygon
         pygame.draw.polygon(
             sfc, self.color, points)
+
+        # Generate fire particle if triggered
+        if self.triggered:
+            for _ in range(self.particle_amount):
+                dw = self.particle_dtheta
+                theta = self.angle + (random.random() * 2 * dw - dw)
+                self.gs.add_particle(FireParticle(
+                    self.gs, mid_x, mid_y, theta))
 
     def get_position(self):
         return self.position

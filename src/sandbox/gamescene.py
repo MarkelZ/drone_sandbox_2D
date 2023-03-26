@@ -26,11 +26,6 @@ class GameScene:
         if self.drone != None:
             self.drone.update(tdelta)
 
-        # TEST
-        if pygame.key.get_pressed()[pygame.K_p]:
-            self.add_particle(FireParticle(
-                self, 500, 200, random.random() * 6.28))
-
         for p in self.particles:
             p.update(tdelta)
 
@@ -70,4 +65,4 @@ class GameScene:
         l = RigidLink(self.engine, p1, p2)
 
     def generate_test2(self):
-        self.drone = create_test_drone(self.engine)
+        self.drone = create_test_drone(self)

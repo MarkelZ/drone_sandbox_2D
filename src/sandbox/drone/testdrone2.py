@@ -9,9 +9,11 @@ from drone.component.input import InputComponent
 from drone.component.booster import Booster
 
 
-def create_test_drone(engine):
+def create_test_drone(gamestate):
+    engine = gamestate.engine
+
     # Create the drone
-    testdrone = Drone(engine)
+    testdrone = Drone(gamestate)
 
     # Input
     k_right = InputComponent(pygame.K_RIGHT)
@@ -64,16 +66,16 @@ def create_test_drone(engine):
     a1 = AngleMeter(l13, 0.1, 1.5)
     a2 = AngleMeter(l14, -1.5, -0.1)
 
-    b1 = Booster(l14, k_space, 2, math.pi / 2)
+    b1 = Booster(gamestate, l14, k_space, 2, math.pi / 2)
 
-    b4 = Booster(l3, k_space, 2, -math.pi / 2)
-    b5 = Booster(l9, k_space, 2, math.pi / 2)
+    b4 = Booster(gamestate, l3, k_space, 2, -math.pi / 2)
+    b5 = Booster(gamestate, l9, k_space, 2, math.pi / 2)
 
-    b2 = Booster(l4, a2, 2, -math.pi / 2)
-    b3 = Booster(l10, a1, 2, math.pi / 2)
+    b2 = Booster(gamestate, l4, a2, 2, -math.pi / 2)
+    b3 = Booster(gamestate, l10, a1, 2, math.pi / 2)
 
-    b6 = Booster(l2, k_right, 2, math.pi / 2)
-    b7 = Booster(l8, k_left, 2, -math.pi / 2)
+    b6 = Booster(gamestate, l2, k_right, 2, math.pi / 2)
+    b7 = Booster(gamestate, l8, k_left, 2, -math.pi / 2)
 
     # Add components to drone
     testdrone.components = [v1, v2, v3, v4, v5, v6, v7, v8,

@@ -15,9 +15,6 @@ class Particle:
         self.col1 = col1
         self.col2 = col2
 
-        print(vx)
-        print(vy)
-
     def update(self, tdelta):
         self.timer += tdelta
 
@@ -38,6 +35,8 @@ class FireParticle(Particle):
         radius = random.randint(4, 8)
         super().__init__(gamescene, x, y,
                          speed * math.cos(angle), speed * math.sin(angle),
-                         duration=500, radius=radius,
-                         col1=(255, 200, 100), col2=(64, 0, 0))
+                         duration=300, radius=radius,
+                         col1=(255, 220, 100), col2=(64, 0, 0))
         self.p.bounce = 0
+        self.p.gmul = 0
+        self.p.drfric = 0.9

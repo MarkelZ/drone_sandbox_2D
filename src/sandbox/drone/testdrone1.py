@@ -10,9 +10,11 @@ from drone.component.input import InputComponent
 from drone.component.booster import Booster
 
 
-def create_test_drone(engine):
+def create_test_drone(gamestate):
+    engine = gamestate.engine
+
     # Create the drone
-    testdrone = Drone(engine)
+    testdrone = Drone(gamestate)
 
     # Input
     k_right = InputComponent(pygame.K_RIGHT)
@@ -28,7 +30,7 @@ def create_test_drone(engine):
     l3 = LinkCarbon(engine, v3, v1)
     a = AngleMeter(l2, 0.5, 1.5)
     z = AltiMeter(engine, v1, 400)
-    b = Booster(l2, k_space, 2, math.pi / 2)
+    b = Booster(gamestate, l2, k_space, 2, math.pi / 2)
 
     # Give spin to drone
     v1.p.vx = 30
