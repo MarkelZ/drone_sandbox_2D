@@ -1,4 +1,7 @@
 
+import math
+
+
 class Engine:
     def __init__(self, width, height):
         # Parameters
@@ -49,7 +52,18 @@ class Engine:
             self.ground = height
 
     def generate_explosion(self, x, y, power):
-        pass
+        for p in self.points:
+            dx = p.x - x
+            dy = p.y - y
+            dist2 = dx * dx + dy * dy
+            dist = math.sqrt(dist2)
+            if dist <= 0.001:
+                return
+            speed = power / dist  # power / dist2
+            normalx = dx / dist
+            normaly = dy / dist
+
+            p.push(normalx * speed, normaly * speed)
 
     def add_pointmass(self, p):
         self.points_to_add.append(p)

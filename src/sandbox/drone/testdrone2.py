@@ -7,6 +7,7 @@ from drone.component.linkcomponent import LinkCarbon
 from drone.component.anglemeter import AngleMeter
 from drone.component.input import InputComponent
 from drone.component.booster import Booster
+from drone.component.cannon import Cannon
 
 
 def create_test_drone(gamestate):
@@ -16,9 +17,10 @@ def create_test_drone(gamestate):
     testdrone = Drone(gamestate)
 
     # Input
-    k_right = InputComponent(pygame.K_RIGHT)
-    k_left = InputComponent(pygame.K_LEFT)
-    k_space = InputComponent(pygame.K_SPACE)
+    k_right = InputComponent(pygame.K_d)
+    k_left = InputComponent(pygame.K_a)
+    k_up = InputComponent(pygame.K_w)
+    k_attack = InputComponent(pygame.K_SPACE)
 
     # Components
     v1 = Vertex(engine, 0, 40)
@@ -66,16 +68,20 @@ def create_test_drone(gamestate):
     a1 = AngleMeter(l13, 0.1, 1.5)
     a2 = AngleMeter(l14, -1.5, -0.1)
 
-    b1 = Booster(gamestate, l14, k_space, 2, math.pi / 2)
+    # b1 = Booster(gamestate, l14, k_space, 2, math.pi / 2)
 
-    b4 = Booster(gamestate, l3, k_space, 2, -math.pi / 2)
-    b5 = Booster(gamestate, l9, k_space, 2, math.pi / 2)
+    b4 = Booster(gamestate, l3, k_up, 3, -math.pi / 2)
+    b5 = Booster(gamestate, l9, k_up, 3, math.pi / 2)
 
-    b2 = Booster(gamestate, l4, a2, 2, -math.pi / 2)
-    b3 = Booster(gamestate, l10, a1, 2, math.pi / 2)
+    b2a = Booster(gamestate, l4, a1, 1, 0)
+    b2b = Booster(gamestate, l4, a2, 1, math.pi)
+    b3a = Booster(gamestate, l10, a2, 1, 0)
+    b3b = Booster(gamestate, l10, a1, 1, math.pi)
 
     b6 = Booster(gamestate, l2, k_right, 2, math.pi / 2)
     b7 = Booster(gamestate, l8, k_left, 2, -math.pi / 2)
+
+    c1 = Cannon(gamestate, l14, k_attack, 10, math.pi / 2)
 
     # Add components to drone
     testdrone.components = [v1, v2, v3, v4, v5, v6, v7, v8,
@@ -83,7 +89,7 @@ def create_test_drone(gamestate):
                             l1, l2, l3, l4, l5, l6, l7, l8,
                             l9, l10, l11, l12, l13, l14, l15,
                             l16, l17, l18, l19, l20, l21, l22, l23, l24,
-                            a1, a2, b1, b2, b3, b4, b5, b6, b7,
-                            k_right, k_left, k_space]
+                            a1, a2, b2a, b2b, b3a, b3b, b4, b5, b6, b7, c1,
+                            k_right, k_left, k_up, k_attack]
 
     return testdrone

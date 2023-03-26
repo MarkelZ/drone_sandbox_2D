@@ -19,7 +19,7 @@ class Particle:
         self.timer += tdelta
 
         if self.timer >= self.duration:
-            self.gs.remove_particle(self)
+            self.despawn()
 
     def draw(self, sfc):
         # Interpolate linearly between color1 and color2 based on timer
@@ -28,15 +28,33 @@ class Particle:
                  c2 in zip(self.col1, self.col2)]
         pygame.draw.circle(sfc, color, (self.p.x, self.p.y), self.radius)
 
+    def despawn(self):
+        self.gs.remove_particle(self)
+
 
 class FireParticle(Particle):
     def __init__(self, gamescene, x, y, angle):
-        speed = 10
+        speed = random.random() * 7 + 3
         radius = random.randint(4, 8)
         super().__init__(gamescene, x, y,
                          speed * math.cos(angle), speed * math.sin(angle),
                          duration=300, radius=radius,
-                         col1=(255, 220, 100), col2=(64, 0, 0))
+                         col1=(255, 230, 100), col2=(64, 16, 0))
         self.p.bounce = 0
-        self.p.gmul = 0
+        self.p.gmul = -0.2
         self.p.drfric = 0.9
+
+
+class SmokeParticle(Particle):
+    def __init__(self, gamescene, x, y):
+        speed = random.random() * 15 + 5
+        radius = random.randint(8, 16)
+        theta = random.random() * -math.pi
+        duration = random.randint(400, 900)
+        super().__init__(gamescene, x, y,
+                         speed * math.cos(theta), speed * math.sin(theta),
+                         duration=duration, radius=radius,
+                         col1=(156, 132, 128), col2=(64, 64, 96))
+        self.p.bounce = 0
+        self.p.gmul = -0.1
+        self.p.drfric = 0.95
