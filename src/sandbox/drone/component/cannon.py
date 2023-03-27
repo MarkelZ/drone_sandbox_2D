@@ -29,7 +29,7 @@ class Cannon(Component, MeasurablePositionComponent, MeasurableAngleComponent, T
         self.triggered = False
 
         # Render settings
-        self.color = (196, 156, 156)
+        self.color = (156, 198, 220)
         self.width = 30
         self.length = 20
 
@@ -45,8 +45,10 @@ class Cannon(Component, MeasurablePositionComponent, MeasurableAngleComponent, T
 
         if self.triggered:
             # Shoot missile
-            m = Missile(self.gs, self.position[0],
-                        self.position[1], self.angle, 20)
+            x, y = self.position
+            mx = x + cos(self.angle) * self.length
+            my = y + sin(self.angle) * self.length
+            m = Missile(self.gs, mx, my, self.angle, 50)
             self.gs.add_particle(m)
 
             # Apply knockback

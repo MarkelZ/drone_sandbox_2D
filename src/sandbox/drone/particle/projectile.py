@@ -7,8 +7,8 @@ class Missile(Particle):
     def __init__(self, gamescene, x, y, angle, speed):
         super().__init__(gamescene, x, y,
                          speed * math.cos(angle), speed * math.sin(angle),
-                         duration=1000, radius=16,
-                         col1=(196, 64, 196), col2=(255, 128, 255))
+                         duration=1000, radius=12,
+                         col1=(220, 64, 196), col2=(255, 128, 255))
         self.p.bounce = 0
         self.p.gmul = 0.5
         self.p.drfric = 0.99
