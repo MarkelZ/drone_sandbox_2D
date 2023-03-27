@@ -4,7 +4,7 @@ from physics.engine import Engine
 from physics.pointmass import PointMass
 from physics.rigidlink import RigidLink
 from drone.testdrone2 import create_test_drone
-from drone.particle.particle import FireParticle
+from drone.drone import Drone
 
 
 class GameScene:
@@ -18,8 +18,8 @@ class GameScene:
         self.particles_to_add = []
         self.particles_to_remove = []
 
-        # This is for testing
-        self.generate_test2()
+        # self.generate_test2()
+        self.drone = Drone(self, 'saves/drone2.json')
 
     def update(self, tdelta):
         self.engine.update(tdelta)

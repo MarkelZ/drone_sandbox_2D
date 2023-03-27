@@ -1,1 +1,68 @@
-{}
+{
+    "k_right": {
+        "type": "InputComponent",
+        "value": 100
+    },
+    "k_left": {
+        "type": "InputComponent",
+        "value": 97
+    },
+    "k_space": {
+        "type": "InputComponent",
+        "value": 32
+    },
+    "v1": {
+        "type": "Vertex",
+        "x": 100,
+        "y": 100
+    },
+    "v2": {
+        "type": "Wheel",
+        "x": 30,
+        "y": 200,
+        "power": 50,
+        "child1": "k_right",
+        "child2": "k_left"
+    },
+    "v3": {
+        "type": "Wheel",
+        "x": 170,
+        "y": 200,
+        "power": 50,
+        "child1": "k_right",
+        "child2": "k_left"
+    },
+    "l1": {
+        "type": "LinkCarbon",
+        "v1": "v1",
+        "v2": "v2"
+    },
+    "l2": {
+        "type": "LinkCarbon",
+        "v1": "v2",
+        "v2": "v3"
+    },
+    "l3": {
+        "type": "LinkCarbon",
+        "v1": "v3",
+        "v2": "v1"
+    },
+    "a": {
+        "type": "AngleMeter",
+        "child": "l2",
+        "threshold1": 0.5,
+        "threshold2": 1.5
+    },
+    "z": {
+        "type": "AltiMeter",
+        "child": "v1",
+        "threshold": 400
+    },
+    "b": {
+        "type": "Booster",
+        "v": "l2",
+        "t": "k_space",
+        "power": 2,
+        "angle": 1.5707963267948966
+    }
+}
