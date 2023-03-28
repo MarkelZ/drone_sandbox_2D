@@ -26,8 +26,9 @@ class LinkComponent(Component, PushableComponent, MeasurablePositionComponent, M
             pass
 
     def draw(self, camera):
-        camera.render_line(self.color, self.l.p1.x, self.l.p1.y,
-                           self.l.p2.x, self.l.p2.y, 4)
+        if not self.l.isbroken:
+            camera.render_line(self.color, self.l.p1.x, self.l.p1.y,
+                               self.l.p2.x, self.l.p2.y, 4)
 
     def get_position(self):
         return ((self.l.p1.x + self.l.p2.x) / 2, (self.l.p1.y + self.l.p2.y) / 2)
@@ -42,10 +43,10 @@ class LinkComponent(Component, PushableComponent, MeasurablePositionComponent, M
         self.l.p1.push(pushx, pushy)
         self.l.p2.push(pushx, pushy)
 
-    def get_draw_priority():
+    def get_draw_priority(self):
         return 0
 
-    def get_update_priority():
+    def get_update_priority(self):
         return 0
 
 
@@ -56,4 +57,4 @@ class LinkCarbon(LinkComponent):
 
 class LinkAluminum(LinkComponent):
     def __init__(self, engine, v1, v2):
-        super().__init__(engine, v1, v2, 2.5, 20, (128, 216, 255))
+        super().__init__(engine, v1, v2, 2, 20, (128, 216, 255))

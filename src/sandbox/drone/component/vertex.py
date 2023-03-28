@@ -17,11 +17,11 @@ class Vertex(Component, MeasurablePositionComponent, PointMassComponent):
     def draw(self, camera):
         camera.render_circle(self.color, self.p.x, self.p.y, self.p.grradius)
 
-    def get_draw_priority():
-        return 0
+    def get_draw_priority(self):
+        return 1
 
-    def get_update_priority():
-        return 0
+    def get_update_priority(self):
+        return 7
 
     def get_position(self):
         return (self.p.x, self.p.y)

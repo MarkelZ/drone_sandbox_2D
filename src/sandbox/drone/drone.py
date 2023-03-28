@@ -14,14 +14,24 @@ class Drone:
     def __init__(self, gamestate, path=None):
         self.gs = gamestate
         self.load_components(path)
-        # TODO: sort components by component type for updating and drawing
+
+        # Sort components by uptade and draw priorities
+        comp_update_list = [(comp, comp.get_update_priority())
+                            for comp in self.components]
+        comp_update_list.sort(key=lambda x: x[1])
+        self.comp_update_list = [x[0] for x in comp_update_list]
+
+        comp_draw_list = [(comp, comp.get_draw_priority())
+                          for comp in self.components]
+        comp_draw_list.sort(key=lambda x: x[1])
+        self.comp_draw_list = [x[0] for x in comp_draw_list]
 
     def update(self, tdelta):
-        for comp in self.components:
+        for comp in self.comp_update_list:
             comp.update(tdelta)
 
     def draw(self, sfc):
-        for comp in self.components:
+        for comp in self.comp_draw_list:
             comp.draw(sfc)
 
     def get_camera_component(self):

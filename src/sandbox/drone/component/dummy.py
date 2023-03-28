@@ -20,11 +20,11 @@ class _Dummy(Component, MeasurablePositionComponent, MeasurableAngleComponent, T
     def is_triggered(self):
         return False
 
-    def get_draw_priority():
-        return 0
+    def get_draw_priority(self):
+        return 7
 
-    def get_update_priority():
-        return 0
+    def get_update_priority(self):
+        return 7
 
 
 dummy = _Dummy()

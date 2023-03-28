@@ -49,8 +49,8 @@ class AltiMeter(Component, MeasurablePositionComponent, TriggerableComponent):
     def is_triggered(self):
         return self.triggered
 
-    def get_draw_priority():
-        return 0
+    def get_draw_priority(self):
+        return 2
 
-    def get_update_priority():
-        return 0
+    def get_update_priority(self):
+        return 2

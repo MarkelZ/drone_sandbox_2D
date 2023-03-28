@@ -11,12 +11,12 @@ class Component(metaclass=abc.ABCMeta):
         pass
 
     @abc.abstractmethod
-    def get_draw_priority():
-        return 0
+    def get_draw_priority(self):
+        return 7
 
     @abc.abstractmethod
-    def get_update_priority():
-        return 0
+    def get_update_priority(self):
+        return 7
 
 
 class PointMassComponent(metaclass=abc.ABCMeta):

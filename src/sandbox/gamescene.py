@@ -14,8 +14,8 @@ class GameScene:
         self.game = game
         self.engine = Engine(game.width, game.height)
         self.camera = Camera(game.width, game.height)
-        self.background = Background((0, 0, 64),
-                                     (64, 64, 128),
+        self.background = Background((0, 32, 64),
+                                     (16, 48, 96),
                                      (0, 128, 0),
                                      (64, 198, 64),
                                      360)
