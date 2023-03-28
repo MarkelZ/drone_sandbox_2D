@@ -1,0 +1,266 @@
+{
+    "k_right": {
+        "type": "InputComponent",
+        "value": 100
+    },
+    "k_left": {
+        "type": "InputComponent",
+        "value": 97
+    },
+    "k_up": {
+        "type": "InputComponent",
+        "value": 119
+    },
+    "k_attack": {
+        "type": "InputComponent",
+        "value": 32
+    },
+    "v1": {
+        "type": "Vertex",
+        "x": 0,
+        "y": 40
+    },
+    "v2": {
+        "type": "Vertex",
+        "x": 160,
+        "y": 0
+    },
+    "v3": {
+        "type": "Vertex",
+        "x": 0,
+        "y": 80
+    },
+    "v4": {
+        "type": "Vertex",
+        "x": 160,
+        "y": 80
+    },
+    "v5": {
+        "type": "Vertex",
+        "x": 400,
+        "y": 40
+    },
+    "v6": {
+        "type": "Vertex",
+        "x": 240,
+        "y": 0
+    },
+    "v7": {
+        "type": "Vertex",
+        "x": 400,
+        "y": 80
+    },
+    "v8": {
+        "type": "Vertex",
+        "x": 240,
+        "y": 80
+    },
+    "w1": {
+        "type": "Wheel",
+        "x": 60,
+        "y": 120,
+        "power": 100,
+        "child1": "k_right",
+        "child2": "k_left"
+    },
+    "w2": {
+        "type": "Wheel",
+        "x": 340,
+        "y": 120,
+        "power": 100,
+        "child1": "k_right",
+        "child2": "k_left"
+    },
+    "l1": {
+        "type": "LinkCarbon",
+        "v1": "v1",
+        "v2": "v2"
+    },
+    "l2": {
+        "type": "LinkCarbon",
+        "v1": "v2",
+        "v2": "v4"
+    },
+    "l3": {
+        "type": "LinkCarbon",
+        "v1": "v4",
+        "v2": "v3"
+    },
+    "l4": {
+        "type": "LinkCarbon",
+        "v1": "v3",
+        "v2": "v1"
+    },
+    "l5": {
+        "type": "LinkCarbon",
+        "v1": "v3",
+        "v2": "v2"
+    },
+    "l6": {
+        "type": "LinkCarbon",
+        "v1": "v1",
+        "v2": "v4"
+    },
+    "l7": {
+        "type": "LinkCarbon",
+        "v1": "v5",
+        "v2": "v6"
+    },
+    "l8": {
+        "type": "LinkCarbon",
+        "v1": "v6",
+        "v2": "v8"
+    },
+    "l9": {
+        "type": "LinkCarbon",
+        "v1": "v8",
+        "v2": "v7"
+    },
+    "l10": {
+        "type": "LinkCarbon",
+        "v1": "v7",
+        "v2": "v5"
+    },
+    "l11": {
+        "type": "LinkCarbon",
+        "v1": "v7",
+        "v2": "v6"
+    },
+    "l12": {
+        "type": "LinkCarbon",
+        "v1": "v5",
+        "v2": "v8"
+    },
+    "l13": {
+        "type": "LinkCarbon",
+        "v1": "v2",
+        "v2": "v6"
+    },
+    "l14": {
+        "type": "LinkCarbon",
+        "v1": "v4",
+        "v2": "v8"
+    },
+    "l15": {
+        "type": "LinkCarbon",
+        "v1": "v2",
+        "v2": "v8"
+    },
+    "l16": {
+        "type": "LinkCarbon",
+        "v1": "v6",
+        "v2": "v4"
+    },
+    "l17": {
+        "type": "LinkCarbon",
+        "v1": "v3",
+        "v2": "w1"
+    },
+    "l18": {
+        "type": "LinkCarbon",
+        "v1": "v4",
+        "v2": "w1"
+    },
+    "l19": {
+        "type": "LinkCarbon",
+        "v1": "v7",
+        "v2": "w2"
+    },
+    "l20": {
+        "type": "LinkCarbon",
+        "v1": "v8",
+        "v2": "w2"
+    },
+    "l21": {
+        "type": "LinkCarbon",
+        "v1": "v1",
+        "v2": "w1"
+    },
+    "l22": {
+        "type": "LinkCarbon",
+        "v1": "v2",
+        "v2": "w1"
+    },
+    "l23": {
+        "type": "LinkCarbon",
+        "v1": "v5",
+        "v2": "w2"
+    },
+    "l24": {
+        "type": "LinkCarbon",
+        "v1": "v6",
+        "v2": "w2"
+    },
+    "a1": {
+        "type": "AngleMeter",
+        "child": "l13",
+        "threshold1": 0.1,
+        "threshold2": 1.5
+    },
+    "a2": {
+        "type": "AngleMeter",
+        "child": "l14",
+        "threshold1": -1.5,
+        "threshold2": -0.1
+    },
+    "b2a": {
+        "type": "Booster",
+        "v": "l4",
+        "t": "a1",
+        "power": 1,
+        "angle": 0
+    },
+    "b2b": {
+        "type": "Booster",
+        "v": "l4",
+        "t": "a2",
+        "power": 1,
+        "angle": 3.141592653589793
+    },
+    "b3a": {
+        "type": "Booster",
+        "v": "l10",
+        "t": "a2",
+        "power": 1,
+        "angle": 0
+    },
+    "b3b": {
+        "type": "Booster",
+        "v": "l10",
+        "t": "a1",
+        "power": 1,
+        "angle": 3.141592653589793
+    },
+    "b4": {
+        "type": "Booster",
+        "v": "l3",
+        "t": "k_up",
+        "power": 3,
+        "angle": -1.5707963267948966
+    },
+    "b5": {
+        "type": "Booster",
+        "v": "l9",
+        "t": "k_up",
+        "power": 3,
+        "angle": 1.5707963267948966
+    },
+    "b6": {
+        "type": "Booster",
+        "v": "l2",
+        "t": "k_right",
+        "power": 2,
+        "angle": 1.5707963267948966
+    },
+    "b7": {
+        "type": "Booster",
+        "v": "l8",
+        "t": "k_left",
+        "power": 2,
+        "angle": -1.5707963267948966
+    },
+    "camera": {
+        "type": "CameraComponent",
+        "child": "a2"
+    }
+}

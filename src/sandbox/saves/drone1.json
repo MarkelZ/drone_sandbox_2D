@@ -19,7 +19,7 @@
     "v2": {
         "type": "Wheel",
         "x": 30,
-        "y": 200,
+        "y": 222,
         "power": 50,
         "child1": "k_right",
         "child2": "k_left"
@@ -27,7 +27,7 @@
     "v3": {
         "type": "Wheel",
         "x": 170,
-        "y": 200,
+        "y": 222,
         "power": 50,
         "child1": "k_right",
         "child2": "k_left"

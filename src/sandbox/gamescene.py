@@ -27,7 +27,7 @@ class GameScene:
         self.particles_to_remove = []
 
         # self.generate_test2()
-        self.drone = Drone(self, 'saves/drone2.json')
+        self.drone = Drone(self, 'saves/drone1.json')
 
         self.camera.attach_to_component(self.drone.get_camera_component())
 

@@ -1,0 +1,186 @@
+{
+    "k_right": {
+        "type": "InputComponent",
+        "value": 100
+    },
+    "k_left": {
+        "type": "InputComponent",
+        "value": 97
+    },
+    "k_up": {
+        "type": "InputComponent",
+        "value": 119
+    },
+    "k_space": {
+        "type": "InputComponent",
+        "value": 32
+    },
+    "v1": {
+        "type": "Vertex",
+        "x": 0,
+        "y": 0,
+        "power": 50,
+        "child1": "k_right",
+        "child2": "k_left"
+    },
+    "v2": {
+        "type": "Vertex",
+        "x": 0,
+        "y": 100,
+        "power": 50,
+        "child1": "k_right",
+        "child2": "k_left"
+    },
+    "v3": {
+        "type": "Wheel",
+        "x": 0,
+        "y": 200,
+        "power": 50,
+        "child1": "k_right",
+        "child2": "k_left"
+    },
+    "v4": {
+        "type": "Vertex",
+        "x": 200,
+        "y": 0,
+        "power": 50,
+        "child1": "k_right",
+        "child2": "k_left"
+    },
+    "v5": {
+        "type": "Vertex",
+        "x": 200,
+        "y": 100,
+        "power": 50,
+        "child1": "k_right",
+        "child2": "k_left"
+    },
+    "v6": {
+        "type": "Wheel",
+        "x": 200,
+        "y": 200,
+        "power": 50,
+        "child1": "k_right",
+        "child2": "k_left"
+    },
+    "l1": {
+        "type": "LinkCarbon",
+        "v1": "v1",
+        "v2": "v4"
+    },
+    "l2": {
+        "type": "LinkCarbon",
+        "v1": "v4",
+        "v2": "v5"
+    },
+    "l3": {
+        "type": "LinkCarbon",
+        "v1": "v2",
+        "v2": "v5"
+    },
+    "l4": {
+        "type": "LinkCarbon",
+        "v1": "v2",
+        "v2": "v1"
+    },
+    "l5": {
+        "type": "LinkCarbon",
+        "v1": "v5",
+        "v2": "v6"
+    },
+    "l6": {
+        "type": "LinkCarbon",
+        "v1": "v3",
+        "v2": "v6"
+    },
+    "l7": {
+        "type": "LinkCarbon",
+        "v1": "v3",
+        "v2": "v2"
+    },
+    "l8": {
+        "type": "LinkCarbon",
+        "v1": "v1",
+        "v2": "v5"
+    },
+    "l9": {
+        "type": "LinkCarbon",
+        "v1": "v4",
+        "v2": "v2"
+    },
+    "l10": {
+        "type": "LinkCarbon",
+        "v1": "v2",
+        "v2": "v6"
+    },
+    "l11": {
+        "type": "LinkCarbon",
+        "v1": "v5",
+        "v2": "v3"
+    },
+    "a1": {
+        "type": "AngleMeter",
+        "child": "l1",
+        "threshold1": 0.1,
+        "threshold2": 1.5
+    },
+    "a2": {
+        "type": "AngleMeter",
+        "child": "l3",
+        "threshold1": -1.5,
+        "threshold2": -0.1
+    },
+    "b1": {
+        "type": "Booster",
+        "v": "l7",
+        "t": "k_space",
+        "power": 2,
+        "angle": -1.5707963267948966
+    },
+    "b2": {
+        "type": "Booster",
+        "v": "l6",
+        "t": "k_up",
+        "power": 6,
+        "angle": 1.5707963267948966
+    },
+    "b3": {
+        "type": "Booster",
+        "v": "l4",
+        "t": "a1",
+        "power": 1,
+        "angle": 0
+    },
+    "b4": {
+        "type": "Booster",
+        "v": "l4",
+        "t": "a2",
+        "power": 1,
+        "angle": 3.141592653589793
+    },
+    "b5": {
+        "type": "Booster",
+        "v": "l2",
+        "t": "a1",
+        "power": 1,
+        "angle": 0
+    },
+    "b6": {
+        "type": "Booster",
+        "v": "l2",
+        "t": "a2",
+        "power": 1,
+        "angle": 3.141592653589793
+    },
+    "c1": {
+        "type": "Cannon",
+        "v": "l5",
+        "t": "k_space",
+        "power": 10,
+        "angle": -1.5707963267948966
+    },
+    "camera": {
+        "type": "CameraComponent",
+        "child": "v1"
+    }
+}
