@@ -24,7 +24,11 @@ class Drone:
         for comp in self.components:
             comp.draw(sfc)
 
+    def get_camera_component(self):
+        return self.camera_component
+
     def load_components(self, path):
+        self.camera_component = None
         if path == None:
             self.components = []
             return
@@ -101,6 +105,9 @@ class Drone:
                     t = components[t_label]
 
                     components[label] = Cannon(gs, v, t, power, angle)
+                elif comp_type == 'CameraComponent':
+                    child_label = args['child']
+                    self.camera_component = components[child_label]
                 else:
                     assert False, 'Unknown component type \'' + \
                         comp_type + '\' when parsing file \'' + path + '\'.'

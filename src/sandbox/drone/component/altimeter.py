@@ -24,7 +24,7 @@ class AltiMeter(Component, MeasurablePositionComponent, TriggerableComponent):
         self.altitude = self.engine.ground - y
         self.triggered = self.altitude > self.threshold
 
-    def draw(self, sfc):
+    def draw(self, camera):
         center_x, center_y = self.c.get_position()
 
         # Corners of the rectangle
@@ -38,10 +38,10 @@ class AltiMeter(Component, MeasurablePositionComponent, TriggerableComponent):
         sigmoid = 2.0 / (1.0 +
                          np.exp(-2 * self.altitude / self.engine.ground)) - 1
         offset = max(sigmoid, 0.0) * self.height
-        pygame.draw.rect(sfc, col_fore, pygame.Rect(
-            x1, y1, self.width, self.height))
-        pygame.draw.rect(sfc, col_back, pygame.Rect(
-            x1, y1, self.width, self.height - offset))
+        camera.render_axis_aligned_rect(
+            col_fore, x1, y1, self.width, self.height)
+        camera.render_axis_aligned_rect(
+            col_fore, x1, y1, self.width, self.height - offset)
 
     def get_position(self):
         return self.c.get_position()

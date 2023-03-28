@@ -14,9 +14,8 @@ class Vertex(Component, MeasurablePositionComponent, PointMassComponent):
     def update(self, tdelta):
         pass
 
-    def draw(self, sfc):
-        pygame.draw.circle(
-            sfc, self.color, (self.p.x, self.p.y), self.p.grradius)
+    def draw(self, camera):
+        camera.render_circle(self.color, self.p.x, self.p.y, self.p.grradius)
 
     def get_draw_priority():
         return 0

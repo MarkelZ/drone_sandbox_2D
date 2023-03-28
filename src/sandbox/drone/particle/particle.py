@@ -21,12 +21,12 @@ class Particle:
         if self.timer >= self.duration:
             self.despawn()
 
-    def draw(self, sfc):
+    def draw(self, camera):
         # Interpolate linearly between color1 and color2 based on timer
         alpha = self.timer / self.duration
         color = [(1 - alpha) * c1 + alpha * c2 for c1,
                  c2 in zip(self.col1, self.col2)]
-        pygame.draw.circle(sfc, color, (self.p.x, self.p.y), self.radius)
+        camera.render_circle(color, self.p.x, self.p.y, self.radius)
 
     def despawn(self):
         self.gs.remove_particle(self)

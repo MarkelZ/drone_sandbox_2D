@@ -41,11 +41,10 @@ class Wheel(Component, MeasurablePositionComponent, PointMassComponent, Triggera
                 self.triggered = True
                 self.p.push(-self.power, 0)
 
-    def draw(self, sfc):
-        pygame.draw.circle(
-            sfc, self.color1, (self.p.x, self.p.y), self.p.grradius)
-        pygame.draw.circle(
-            sfc, self.color2, (self.p.x, self.p.y), self.p.grradius - 2)
+    def draw(self, camera):
+        camera.render_circle(self.color1, self.p.x, self.p.y, self.p.grradius)
+        camera.render_circle(self.color2, self.p.x,
+                             self.p.y, self.p.grradius - 2)
 
     def get_position(self):
         return (self.p.x, self.p.y)

@@ -36,42 +36,24 @@ class Booster(Component, MeasurablePositionComponent, MeasurableAngleComponent, 
         self.triggered = self.t.is_triggered()
 
         if self.triggered:
+            # Accelerate vertex
             self.v.push(-self.power * cos(self.angle),
                         -self.power * sin(self.angle))
 
-    def draw(self, sfc):
-        # Position of the topmost point of the booster
-        x = self.position[0]
-        y = self.position[1]
-
-        # Cosine and sine of the angle
-        cos_a = cos(self.angle)
-        sin_a = sin(self.angle)
-
-        # Midpoint of the base of the booster
-        mid_x = x + cos_a * self.height
-        mid_y = y + sin_a * self.height
-
-        # Vector perpendicular to the height / parallel to the base
-        perp_x = -sin_a * self.width / 2
-        perp_y = cos_a * self.width / 2
-
-        # Set of points of the booster polygon
-        points = [(x, y),
-                  (mid_x + perp_x, mid_y + perp_y),
-                  (mid_x - perp_x, mid_y - perp_y)]
-
-        # Draw polygon
-        pygame.draw.polygon(
-            sfc, self.color, points)
-
-        # Generate fire particle if triggered
-        if self.triggered:
+            # Spawn fire particles
+            x, y = self.position
+            mid_x = x + cos(self.angle) * self.height
+            mid_y = y + sin(self.angle) * self.height
             for _ in range(self.particle_amount):
                 dw = self.particle_dtheta
                 theta = self.angle + (random.random() * 2 * dw - dw)
                 self.gs.add_particle(FireParticle(
                     self.gs, mid_x, mid_y, theta))
+
+    def draw(self, camera):
+        x, y = self.position
+        camera.render_triangle(
+            self.color, x, y, self.width, self.height, self.angle)
 
     def get_position(self):
         return self.position

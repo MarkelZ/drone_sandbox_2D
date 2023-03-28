@@ -3,7 +3,6 @@ import pygame
 from drone.component.component import Component, MeasurablePositionComponent, MeasurableAngleComponent, TriggerableComponent, PushableComponent
 from drone.particle.particle import FireParticle
 from math import sin, cos
-from util.draw import draw_rect
 from drone.particle.projectile import Missile
 
 
@@ -56,7 +55,7 @@ class Cannon(Component, MeasurablePositionComponent, MeasurableAngleComponent, T
                         -self.knockback * sin(self.angle))
             self.timer = 0
 
-    def draw(self, sfc):
+    def draw(self, camera):
         # Position of the base of the cannon
         x, y = self.position
 
@@ -65,9 +64,9 @@ class Cannon(Component, MeasurablePositionComponent, MeasurableAngleComponent, T
         o_y = y + sin(self.angle) * l2
 
         # Draw a circle for the base
-        draw_rect(sfc, o_x, o_y, self.width,
-                  self.length, self.angle, self.color)
-        pygame.draw.circle(sfc, self.color, self.position, self.width / 2 - 4)
+        camera.render_rect(self.color, o_x, o_y, self.width,
+                           self.length, self.angle)
+        camera.render_circle(self.color, self.position, self.width / 2 - 4)
 
     def get_position(self):
         return self.position

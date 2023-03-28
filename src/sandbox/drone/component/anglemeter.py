@@ -1,6 +1,5 @@
 import pygame
 from drone.component.component import Component, MeasurablePositionComponent, MeasurableAngleComponent, TriggerableComponent
-from util.draw import draw_rect
 from math import pi, sin, cos
 
 
@@ -28,15 +27,21 @@ class AngleMeter(Component, MeasurablePositionComponent, MeasurableAngleComponen
         self.angle = self.c.get_angle()
         self.triggered = self.angle > self.threshold1 and self.angle < self.threshold2
 
-    def draw(self, sfc):
-        center_x, center_y = self.c.get_position()
+    def draw(self, camera):
+        # Select triggered/untriggered color
         col_back = self.color_back_on if self.triggered else self.color_back_off
         col_fore = self.color_fore_on if self.triggered else self.color_fore_off
-        draw_rect(sfc, center_x, center_y, self.width,
-                  self.height, self.angle, col_back)
+
+        # Draw rectangle
+        center_x, center_y = self.c.get_position()
+        camera.render_rect(col_back, center_x, center_y,
+                           self.width, self.height, self.angle)
+
+        # Draw angle indicator dot
         offset = -self.maxoffset * sin(self.angle)
-        pygame.draw.circle(
-            sfc, col_fore, (center_x + offset * cos(self.angle), center_y + offset * sin(self.angle)), self.radius)
+        center_dot_x = center_x + offset * cos(self.angle)
+        center_dot_y = center_y + offset * sin(self.angle)
+        camera.render_circle(col_fore, center_dot_x, center_dot_y, self.radius)
 
     def get_position(self):
         return self.c.get_position()

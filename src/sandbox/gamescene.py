@@ -5,21 +5,31 @@ from physics.pointmass import PointMass
 from physics.rigidlink import RigidLink
 from drone.testdrone2 import create_test_drone
 from drone.drone import Drone
+from camera import Camera
+from background import Background
 
 
 class GameScene:
     def __init__(self, game):
         self.game = game
         self.engine = Engine(game.width, game.height)
+        self.camera = Camera(game.width, game.height)
+        self.background = Background((0, 0, 64),
+                                     (64, 64, 128),
+                                     (0, 64, 0),
+                                     (64, 128, 64),
+                                     100)
         self.drone = None
-        self.backcol = (0, 0, 64)
+        self.backcol = (128, 0, 128)
 
         self.particles = []
         self.particles_to_add = []
         self.particles_to_remove = []
 
         # self.generate_test2()
-        self.drone = Drone(self, 'saves/drone2.json')
+        self.drone = Drone(self, 'saves/drone1.json')
+
+        self.camera.attach_to_component(self.drone.get_camera_component())
 
     def update(self, tdelta):
         self.engine.update(tdelta)
@@ -28,6 +38,8 @@ class GameScene:
 
         for p in self.particles:
             p.update(tdelta)
+
+        self.camera.update(tdelta)
 
         self.particles += self.particles_to_add
         self.particles_to_add = []
@@ -38,11 +50,15 @@ class GameScene:
 
     def draw(self, sfc):
         sfc.fill(self.backcol)
+
+        self.camera.set_surface(sfc)
+        self.background.draw(self.camera)
+
         if self.drone != None:
-            self.drone.draw(sfc)
+            self.drone.draw(self.camera)
 
         for p in self.particles:
-            p.draw(sfc)
+            p.draw(self.camera)
 
     def add_particle(self, p):
         self.particles_to_add.append(p)

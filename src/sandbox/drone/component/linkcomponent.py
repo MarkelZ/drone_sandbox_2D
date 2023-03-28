@@ -25,9 +25,9 @@ class LinkComponent(Component, PushableComponent, MeasurablePositionComponent, M
             # TODO: break and create particles
             pass
 
-    def draw(self, sfc):
-        pygame.draw.line(sfc, self.color, (self.l.p1.x,
-                         self.l.p1.y), (self.l.p2.x, self.l.p2.y), 4)
+    def draw(self, camera):
+        camera.render_line(self.color, self.l.p1.x, self.l.p1.y,
+                           self.l.p2.x, self.l.p2.y, 4)
 
     def get_position(self):
         return ((self.l.p1.x + self.l.p2.x) / 2, (self.l.p1.y + self.l.p2.y) / 2)

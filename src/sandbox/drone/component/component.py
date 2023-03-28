@@ -7,7 +7,7 @@ class Component(metaclass=abc.ABCMeta):
         pass
 
     @abc.abstractmethod
-    def draw(self, sfc):
+    def draw(self, camera):
         pass
 
     @abc.abstractmethod

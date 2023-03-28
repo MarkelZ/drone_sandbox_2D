@@ -64,5 +64,9 @@
         "t": "k_space",
         "power": 2,
         "angle": 1.5707963267948966
+    },
+    "camera": {
+        "type": "CameraComponent",
+        "child": "v1"
     }
 }
