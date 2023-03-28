@@ -16,9 +16,9 @@ class GameScene:
         self.camera = Camera(game.width, game.height)
         self.background = Background((0, 0, 64),
                                      (64, 64, 128),
-                                     (0, 64, 0),
-                                     (64, 128, 64),
-                                     100)
+                                     (0, 128, 0),
+                                     (64, 198, 64),
+                                     360)
         self.drone = None
         self.backcol = (128, 0, 128)
 

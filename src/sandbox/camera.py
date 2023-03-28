@@ -60,6 +60,12 @@ class Camera:
 
     def render_circle(self, color, center_x, center_y, radius):
         x, y = self.world_to_view(center_x, center_y)
+
+        # There is a pygame bug that does not let draw
+        # circles with negative coordinates :/
+        if x < 0 or y < 0:
+            return
+
         pygame.draw.circle(self.sfc, color, (x, y), radius)
 
     def render_line(self, color, x1, y1, x2, y2, width):
