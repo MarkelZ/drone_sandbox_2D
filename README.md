@@ -5,7 +5,7 @@ This is a sandbox for making flying machines in 2D.
 
 ## Demo
 
-![demo](demo.mp4)
+![demo](https://raw.githubusercontent.com/MarkelZ/drone_sandbox_2D/main/demo.mp4)
 
 ## Dependencies
 - Python 3.
