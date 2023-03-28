@@ -265,5 +265,9 @@
         "t": "k_attack",
         "power": 10,
         "angle": 1.5707963267948966
+    },
+    "camera": {
+        "type": "CameraComponent",
+        "child": "a2"
     }
 }

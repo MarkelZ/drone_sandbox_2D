@@ -66,7 +66,7 @@ class Cannon(Component, MeasurablePositionComponent, MeasurableAngleComponent, T
         # Draw a circle for the base
         camera.render_rect(self.color, o_x, o_y, self.width,
                            self.length, self.angle)
-        camera.render_circle(self.color, self.position, self.width / 2 - 4)
+        camera.render_circle(self.color, x, y, self.width / 2 - 4)
 
     def get_position(self):
         return self.position
