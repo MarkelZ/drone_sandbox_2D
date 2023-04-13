@@ -1,5 +1,10 @@
-import pygame
+# Hide pygame support prompt
+import os
+os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = 'hide'
+
+# Imports
 from gamescene import GameScene
+import pygame
 
 
 class Game:
